@@ -2,7 +2,7 @@
 
 Premium static hackathon demo for an AI-powered student study platform.
 
-## Open the demo
+## Open the demo                                                                                                                                                            neuroai-production-d758.up.railway.app
 
 Open `index.html` in a browser.
 
