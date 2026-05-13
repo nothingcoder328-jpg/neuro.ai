@@ -17,6 +17,13 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <div class="intro-animation" id="introAnimation" aria-label="Neuro.ai opening animation">
+      <canvas id="introCanvas" class="intro-canvas" aria-hidden="true"></canvas>
+      <div class="intro-name" aria-hidden="true">
+        <span>N</span><span>e</span><span>u</span><span>r</span><span>o</span><span>.</span><span>a</span><span>i</span>
+      </div>
+    </div>
+    <canvas id="inkCanvas" class="ink-canvas" aria-hidden="true"></canvas>
     <div class="noise"></div>
 
     <header class="site-header">
@@ -26,11 +33,11 @@
       </a>
       <nav class="top-nav" aria-label="Primary navigation">
         <a href="#features">Features</a>
-        <a href="#demo">Demo</a>
+        <a href="#app">App</a>
         <a href="#dashboard">Dashboard</a>
         <a href="#analytics">Analytics</a>
       </nav>
-      <a class="header-action" href="#demo">Launch App</a>
+      <a class="header-action" href="#app">Launch App</a>
     </header>
 
     <main>
@@ -43,8 +50,8 @@
             quizzes, and flashcards.
           </p>
           <div class="hero-actions">
-            <a class="button primary" href="#demo">Start Learning</a>
-            <button class="button secondary" id="watchDemo">Watch Demo</button>
+            <a class="button primary" href="#app">Start Learning</a>
+            <button class="button secondary" id="openApp">Open App</button>
           </div>
           <div class="hero-metrics" aria-label="Platform highlights">
             <div>
@@ -163,7 +170,7 @@
         </div>
       </section>
 
-      <section class="app-demo" id="demo">
+      <section class="app-shell" id="app">
         <aside class="sidebar" aria-label="App sidebar">
           <div class="sidebar-brand">
             <span class="brand-mark">N</span>
@@ -185,7 +192,7 @@
         <div class="workspace">
           <div class="workspace-top">
             <div>
-              <p class="eyebrow"><span></span> Live demo workspace</p>
+              <p class="eyebrow"><span></span> Full student workspace</p>
               <h2 id="workspaceTitle">Dashboard</h2>
             </div>
             <div class="profile-pill">
@@ -240,11 +247,19 @@
 
           <section class="panel" id="uploadPanel">
             <div class="upload-zone" id="uploadZone">
-              <input id="pdfInput" type="file" accept=".pdf" />
               <div class="upload-icon">↑</div>
-              <h3>Drop your textbook PDF</h3>
-              <p>Demo mode instantly analyzes a sample biology chapter.</p>
-              <button class="button primary" id="generateDemo">Generate AI Study Pack</button>
+              <h3>Upload or paste study material</h3>
+              <p>Use a PDF, text file, or pasted chapter. NeuroNote builds a complete study pack from your own content.</p>
+              <input id="pdfInput" type="file" accept=".pdf,.txt,.md" />
+              <div class="upload-actions">
+                <label class="button secondary" for="pdfInput">Choose File</label>
+                <span id="fileName">No file selected</span>
+              </div>
+              <textarea id="sourceText" placeholder="Or paste textbook content, class notes, or a chapter summary here..."></textarea>
+              <div class="upload-actions">
+                <button class="button primary" id="generateStudyPack">Generate Study Pack</button>
+                <button class="button secondary" id="loadSample" type="button">Use Sample Text</button>
+              </div>
             </div>
             <div class="processing-card hidden" id="processingCard">
               <div class="loader"></div>
@@ -259,20 +274,18 @@
             <div class="notes-layout">
               <article class="wide-card">
                 <div class="card-title">
-                  <h3>AI Notes - Photosynthesis</h3>
-                  <span>Generated</span>
+                  <h3 id="notesTitle">AI Notes</h3>
+                  <span id="notesStatus">Waiting for upload</span>
                 </div>
-                <ul class="note-list">
-                  <li>Photosynthesis converts light energy into chemical energy stored as glucose.</li>
-                  <li>Chlorophyll absorbs light mostly in blue and red wavelengths.</li>
-                  <li>Light reactions produce ATP and NADPH inside thylakoid membranes.</li>
-                  <li>The Calvin cycle uses carbon dioxide to build glucose molecules.</li>
+                <ul class="note-list" id="noteList">
+                  <li>Upload or paste study material to generate structured notes.</li>
                 </ul>
+                <div class="concept-cloud" id="keyConcepts"></div>
               </article>
               <article class="explain-card">
                 <h3>Explain Like I’m 15</h3>
                 <p id="explainText">
-                  A plant leaf is like a tiny solar-powered kitchen. Sunlight is the power, carbon dioxide and water are ingredients, and glucose is the food it makes.
+                  Upload content and NeuroNote will simplify the hardest idea in easy language.
                 </p>
                 <div class="chip-row">
                   <button class="chip" data-explain="simple">Simpler</button>
@@ -288,12 +301,12 @@
               <button class="icon-button" id="prevCard" aria-label="Previous flashcard">‹</button>
               <article class="study-card" id="studyCard">
                 <div class="card-face front">
-                  <span>Tap to flip</span>
-                  <h3 id="flashQuestion">What is chlorophyll?</h3>
+                  <span id="flashCounter">Tap to flip</span>
+                  <h3 id="flashQuestion">Upload content first</h3>
                 </div>
                 <div class="card-face back">
                   <span>Answer</span>
-                  <p id="flashAnswer">A green pigment that absorbs light energy for photosynthesis.</p>
+                  <p id="flashAnswer">Your generated answer will appear here.</p>
                 </div>
               </article>
               <button class="icon-button" id="nextCard" aria-label="Next flashcard">›</button>
@@ -310,8 +323,8 @@
             <div class="quiz-shell">
               <div class="quiz-top">
                 <div>
-                  <h3>Chapter 3 Timed Quiz</h3>
-                  <p>Difficulty: Medium · 06:00 remaining</p>
+                  <h3 id="quizTitle">Generated Quiz</h3>
+                  <p id="quizMeta">Upload material to generate questions.</p>
                 </div>
                 <strong id="quizScore">0 / 3</strong>
               </div>
@@ -326,9 +339,7 @@
           <section class="panel" id="chatPanel">
             <div class="chat-shell">
               <div class="chat-log" id="chatLog">
-                <div class="message ai">Ask me anything from your uploaded PDF.</div>
-                <div class="message user">Generate important questions from chapter 3.</div>
-                <div class="message ai">Sure. Start with: describe light reactions, explain Calvin cycle, compare chlorophyll a and b, and trace energy flow from sunlight to glucose.</div>
+                <div class="message ai">Upload or paste content, then ask questions grounded in your study material.</div>
               </div>
               <form class="chat-form" id="chatForm">
                 <input id="chatInput" type="text" placeholder="Ask about your PDF..." />
@@ -432,10 +443,11 @@
         <a href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
         <a href="mailto:hello@neuronote.ai">Contact</a>
         <a href="#hero">Privacy</a>
-        <a href="#demo">Social</a>
+        <a href="#app">Social</a>
       </nav>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script src="app.js"></script>
   </body>
 </html>
