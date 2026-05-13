@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NeuroNote AI - Your AI-Powered Study Brain</title>
+    <meta
+      name="description"
+      content="Upload any PDF and instantly generate AI notes, explanations, quizzes, flashcards, and learning analytics."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="noise"></div>
+
+    <header class="site-header">
+      <a href="#hero" class="brand" aria-label="NeuroNote AI home">
+        <span class="brand-mark">N</span>
+        <span>NeuroNote AI</span>
+      </a>
+      <nav class="top-nav" aria-label="Primary navigation">
+        <a href="#features">Features</a>
+        <a href="#demo">Demo</a>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#analytics">Analytics</a>
+      </nav>
+      <a class="header-action" href="#demo">Launch App</a>
+    </header>
+
+    <main>
+      <section class="hero" id="hero">
+        <div class="hero-copy reveal">
+          <p class="eyebrow"><span></span> Academic operating system</p>
+          <h1>Your AI-Powered Study Brain</h1>
+          <p class="hero-subtitle">
+            Upload any book or PDF and instantly generate notes, explanations,
+            quizzes, and flashcards.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#demo">Start Learning</a>
+            <button class="button secondary" id="watchDemo">Watch Demo</button>
+          </div>
+          <div class="hero-metrics" aria-label="Platform highlights">
+            <div>
+              <strong data-count="94">0</strong>
+              <span>quiz score</span>
+            </div>
+            <div>
+              <strong data-count="12">0</strong>
+              <span>day streak</span>
+            </div>
+            <div>
+              <strong data-count="38">0</strong>
+              <span>hours saved</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal" aria-label="Animated AI dashboard preview">
+          <div class="dashboard-shell floating">
+            <div class="window-bar">
+              <span></span><span></span><span></span>
+              <p>NeuroNote workspace</p>
+            </div>
+            <div class="preview-grid">
+              <article class="preview-card upload-preview">
+                <small>PDF Analyzer</small>
+                <h3>Biology Chapter 3</h3>
+                <div class="scan-line"></div>
+                <p>Generating notes, MCQs, flashcards...</p>
+              </article>
+              <article class="preview-card chat-preview">
+                <small>AI Tutor</small>
+                <div class="message user">Explain photosynthesis</div>
+                <div class="message ai">Think of leaves as tiny solar kitchens.</div>
+              </article>
+              <article class="preview-card chart-preview">
+                <small>Weekly Focus</small>
+                <div class="bars">
+                  <i style="height: 45%"></i>
+                  <i style="height: 70%"></i>
+                  <i style="height: 52%"></i>
+                  <i style="height: 86%"></i>
+                  <i style="height: 64%"></i>
+                </div>
+              </article>
+              <article class="flashcard-mini">
+                <span>Flashcard</span>
+                <strong>ATP</strong>
+                <p>Energy currency of the cell</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="feature-band" id="features">
+        <div class="section-heading reveal">
+          <p class="eyebrow"><span></span> Core intelligence</p>
+          <h2>Everything students usually build manually, generated in seconds.</h2>
+        </div>
+        <div class="feature-grid">
+          <article class="glass-card reveal">
+            <div class="icon">✦</div>
+            <h3>AI Notes</h3>
+            <p>Detailed notes, short notes, definitions, topic maps, and exam-ready summaries from any PDF.</p>
+          </article>
+          <article class="glass-card reveal">
+            <div class="icon">?</div>
+            <h3>Quiz Generator</h3>
+            <p>MCQs, true/false, blanks, timed modes, scoring, difficulty, chapters, and leaderboards.</p>
+          </article>
+          <article class="glass-card reveal">
+            <div class="icon">↻</div>
+            <h3>Flashcards</h3>
+            <p>Flip cards, favorites, swipe review, and a spaced repetition queue for long-term memory.</p>
+          </article>
+          <article class="glass-card reveal">
+            <div class="icon">AI</div>
+            <h3>AI Tutor</h3>
+            <p>Explain Like I’m 15, analogies, step-by-step help, and real-world examples for hard concepts.</p>
+          </article>
+          <article class="glass-card reveal">
+            <div class="icon">⌁</div>
+            <h3>Study Analytics</h3>
+            <p>Streaks, study time, heatmaps, progress rings, quiz accuracy, and weekly learning goals.</p>
+          </article>
+          <article class="glass-card reveal">
+            <div class="icon">⌕</div>
+            <h3>PDF Chat</h3>
+            <p>Ask questions based only on your uploaded material so answers stay grounded and useful.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="timeline-section">
+        <div class="section-heading reveal">
+          <p class="eyebrow"><span></span> How it works</p>
+          <h2>Upload, understand, practice, repeat.</h2>
+        </div>
+        <div class="timeline">
+          <article class="timeline-step reveal">
+            <span>01</span>
+            <h3>Upload PDF</h3>
+            <p>Drop in a textbook, research paper, notes pack, or chapter scan.</p>
+          </article>
+          <article class="timeline-step reveal">
+            <span>02</span>
+            <h3>AI Analyzes</h3>
+            <p>Chapters, concepts, definitions, formulas, and exam patterns are structured.</p>
+          </article>
+          <article class="timeline-step reveal">
+            <span>03</span>
+            <h3>Start Learning</h3>
+            <p>Notes, quizzes, flashcards, chat, and analytics appear in one focused workspace.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="app-demo" id="demo">
+        <aside class="sidebar" aria-label="App sidebar">
+          <div class="sidebar-brand">
+            <span class="brand-mark">N</span>
+            <div>
+              <strong>NeuroNote</strong>
+              <small>Student OS</small>
+            </div>
+          </div>
+          <button class="nav-item active" data-panel="dashboardPanel">Dashboard</button>
+          <button class="nav-item" data-panel="uploadPanel">Upload PDF</button>
+          <button class="nav-item" data-panel="notesPanel">AI Notes</button>
+          <button class="nav-item" data-panel="flashcardsPanel">Flashcards</button>
+          <button class="nav-item" data-panel="quizPanel">Quiz Center</button>
+          <button class="nav-item" data-panel="chatPanel">AI Chat</button>
+          <button class="nav-item" data-panel="analyticsPanel">Analytics</button>
+          <button class="nav-item" data-panel="settingsPanel">Settings</button>
+        </aside>
+
+        <div class="workspace">
+          <div class="workspace-top">
+            <div>
+              <p class="eyebrow"><span></span> Live demo workspace</p>
+              <h2 id="workspaceTitle">Dashboard</h2>
+            </div>
+            <div class="profile-pill">
+              <span class="status-dot"></span>
+              <strong>Rank 7</strong>
+              <small>2,840 XP</small>
+            </div>
+          </div>
+
+          <section class="panel active" id="dashboardPanel">
+            <div class="stat-grid">
+              <article class="stat-card">
+                <span>Study streak</span>
+                <strong>12 days</strong>
+                <div class="ring" style="--value: 78%"><b>78%</b></div>
+              </article>
+              <article class="stat-card">
+                <span>Quiz accuracy</span>
+                <strong>94%</strong>
+                <div class="mini-line"></div>
+              </article>
+              <article class="stat-card">
+                <span>Time studied</span>
+                <strong>18.6h</strong>
+                <p>+4.2h this week</p>
+              </article>
+            </div>
+            <div class="dashboard-grid">
+              <article class="wide-card">
+                <div class="card-title">
+                  <h3>AI Recommendations</h3>
+                  <span>Updated now</span>
+                </div>
+                <div class="recommendation">
+                  <strong>Review cellular respiration</strong>
+                  <p>Your quiz answers show confusion between glycolysis and Krebs cycle.</p>
+                </div>
+                <div class="recommendation">
+                  <strong>Take a 10-question medium quiz</strong>
+                  <p>Projected score improvement: +11% before Friday.</p>
+                </div>
+              </article>
+              <article class="wide-card">
+                <div class="card-title">
+                  <h3>Study Heatmap</h3>
+                  <span>May</span>
+                </div>
+                <div class="heatmap" aria-hidden="true"></div>
+              </article>
+            </div>
+          </section>
+
+          <section class="panel" id="uploadPanel">
+            <div class="upload-zone" id="uploadZone">
+              <input id="pdfInput" type="file" accept=".pdf" />
+              <div class="upload-icon">↑</div>
+              <h3>Drop your textbook PDF</h3>
+              <p>Demo mode instantly analyzes a sample biology chapter.</p>
+              <button class="button primary" id="generateDemo">Generate AI Study Pack</button>
+            </div>
+            <div class="processing-card hidden" id="processingCard">
+              <div class="loader"></div>
+              <div>
+                <h3>Analyzing chapter structure</h3>
+                <p id="processingText">Extracting concepts, definitions, and likely exam questions...</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel" id="notesPanel">
+            <div class="notes-layout">
+              <article class="wide-card">
+                <div class="card-title">
+                  <h3>AI Notes - Photosynthesis</h3>
+                  <span>Generated</span>
+                </div>
+                <ul class="note-list">
+                  <li>Photosynthesis converts light energy into chemical energy stored as glucose.</li>
+                  <li>Chlorophyll absorbs light mostly in blue and red wavelengths.</li>
+                  <li>Light reactions produce ATP and NADPH inside thylakoid membranes.</li>
+                  <li>The Calvin cycle uses carbon dioxide to build glucose molecules.</li>
+                </ul>
+              </article>
+              <article class="explain-card">
+                <h3>Explain Like I’m 15</h3>
+                <p id="explainText">
+                  A plant leaf is like a tiny solar-powered kitchen. Sunlight is the power, carbon dioxide and water are ingredients, and glucose is the food it makes.
+                </p>
+                <div class="chip-row">
+                  <button class="chip" data-explain="simple">Simpler</button>
+                  <button class="chip" data-explain="detail">More detailed</button>
+                  <button class="chip" data-explain="example">Real-world example</button>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="panel" id="flashcardsPanel">
+            <div class="flashcard-stage">
+              <button class="icon-button" id="prevCard" aria-label="Previous flashcard">‹</button>
+              <article class="study-card" id="studyCard">
+                <div class="card-face front">
+                  <span>Tap to flip</span>
+                  <h3 id="flashQuestion">What is chlorophyll?</h3>
+                </div>
+                <div class="card-face back">
+                  <span>Answer</span>
+                  <p id="flashAnswer">A green pigment that absorbs light energy for photosynthesis.</p>
+                </div>
+              </article>
+              <button class="icon-button" id="nextCard" aria-label="Next flashcard">›</button>
+            </div>
+            <div class="spaced-row">
+              <button class="chip">Again</button>
+              <button class="chip">Good</button>
+              <button class="chip active">Easy</button>
+              <button class="chip">Favorite</button>
+            </div>
+          </section>
+
+          <section class="panel" id="quizPanel">
+            <div class="quiz-shell">
+              <div class="quiz-top">
+                <div>
+                  <h3>Chapter 3 Timed Quiz</h3>
+                  <p>Difficulty: Medium · 06:00 remaining</p>
+                </div>
+                <strong id="quizScore">0 / 3</strong>
+              </div>
+              <div class="progress"><span id="quizProgress"></span></div>
+              <h4 id="quizQuestion">Which molecule stores energy made during light reactions?</h4>
+              <div class="answer-grid" id="answerGrid"></div>
+              <p class="quiz-feedback" id="quizFeedback">Choose an answer to get instant feedback.</p>
+              <button class="button secondary" id="nextQuestion">Next Question</button>
+            </div>
+          </section>
+
+          <section class="panel" id="chatPanel">
+            <div class="chat-shell">
+              <div class="chat-log" id="chatLog">
+                <div class="message ai">Ask me anything from your uploaded PDF.</div>
+                <div class="message user">Generate important questions from chapter 3.</div>
+                <div class="message ai">Sure. Start with: describe light reactions, explain Calvin cycle, compare chlorophyll a and b, and trace energy flow from sunlight to glucose.</div>
+              </div>
+              <form class="chat-form" id="chatForm">
+                <input id="chatInput" type="text" placeholder="Ask about your PDF..." />
+                <button class="button primary" type="submit">Send</button>
+              </form>
+            </div>
+          </section>
+
+          <section class="panel" id="analyticsPanel">
+            <div class="analytics-grid" id="analytics">
+              <article class="wide-card">
+                <div class="card-title">
+                  <h3>Weekly Progress</h3>
+                  <span>Goal 80%</span>
+                </div>
+                <canvas id="analyticsCanvas" width="720" height="280"></canvas>
+              </article>
+              <article class="leaderboard wide-card">
+                <div class="card-title">
+                  <h3>Leaderboard</h3>
+                  <span>Class 10 Bio</span>
+                </div>
+                <ol>
+                  <li><span>Aarav</span><strong>3,120 XP</strong></li>
+                  <li><span>You</span><strong>2,840 XP</strong></li>
+                  <li><span>Maya</span><strong>2,730 XP</strong></li>
+                </ol>
+              </article>
+            </div>
+          </section>
+
+          <section class="panel" id="settingsPanel">
+            <div class="wide-card settings-card">
+              <h3>Learning Preferences</h3>
+              <label><input type="checkbox" checked /> Explain with analogies</label>
+              <label><input type="checkbox" checked /> Generate exam questions</label>
+              <label><input type="checkbox" /> Multilingual tutor mode</label>
+              <label><input type="checkbox" checked /> Daily study reminders</label>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="analytics-showcase">
+        <div class="section-heading reveal">
+          <p class="eyebrow"><span></span> Analytics showcase</p>
+          <h2>Every study session becomes a visible growth loop.</h2>
+        </div>
+        <div class="showcase-grid">
+          <article class="glass-card reveal">
+            <strong>18.6h</strong>
+            <span>study hours</span>
+          </article>
+          <article class="glass-card reveal">
+            <strong>94%</strong>
+            <span>quiz scores</span>
+          </article>
+          <article class="glass-card reveal">
+            <strong>12</strong>
+            <span>day streak</span>
+          </article>
+          <article class="glass-card reveal">
+            <strong>+27%</strong>
+            <span>AI insight lift</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="testimonials">
+        <div class="section-heading reveal">
+          <p class="eyebrow"><span></span> Student reactions</p>
+          <h2>Built for the moment judges lean forward.</h2>
+        </div>
+        <div class="testimonial-grid">
+          <article class="testimonial reveal">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=160&q=80" alt="Student reviewer" />
+            <p>“I uploaded one chapter and had notes, flashcards, and a quiz before my coffee cooled.”</p>
+            <strong>Riya, Class 11</strong>
+          </article>
+          <article class="testimonial reveal">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=160&q=80" alt="Student reviewer" />
+            <p>“The Explain Like I’m 15 mode finally made organic chemistry feel human.”</p>
+            <strong>Kabir, First Year</strong>
+          </article>
+          <article class="testimonial reveal">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=160&q=80" alt="Student reviewer" />
+            <p>“It feels like Notion, Duolingo, and a private tutor merged into one app.”</p>
+            <strong>Anika, NEET Prep</strong>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="brand">
+        <span class="brand-mark">N</span>
+        <span>NeuroNote AI</span>
+      </div>
+      <nav aria-label="Footer navigation">
+        <a href="#features">Features</a>
+        <a href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="mailto:hello@neuronote.ai">Contact</a>
+        <a href="#hero">Privacy</a>
+        <a href="#demo">Social</a>
+      </nav>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
