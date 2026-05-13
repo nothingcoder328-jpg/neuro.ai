@@ -23,6 +23,7 @@ const stopWords = new Set([
 let studyPack = loadStudyPack();
 let flashcards = studyPack.flashcards;
 let questions = studyPack.quiz;
+let userStats = loadUserStats();
 let currentCard = 0;
 let currentQuestion = 0;
 let score = 0;
@@ -74,6 +75,98 @@ function loadStudyPack() {
 
 function saveStudyPack(pack) {
   localStorage.setItem("neuronote.studyPack", JSON.stringify(pack));
+}
+
+function emptyUserStats() {
+  return {
+    xp: 0,
+    streak: 0,
+    lastActiveDate: null,
+    correctAnswers: 0,
+    totalAnswers: 0,
+    packsGenerated: 0,
+    cardsReviewed: 0,
+  };
+}
+
+function loadUserStats() {
+  try {
+    const saved = localStorage.getItem("neuronote.userStats");
+    return saved ? { ...emptyUserStats(), ...JSON.parse(saved) } : emptyUserStats();
+  } catch {
+    return emptyUserStats();
+  }
+}
+
+function saveUserStats() {
+  localStorage.setItem("neuronote.userStats", JSON.stringify(userStats));
+}
+
+function todayKey() {
+  return new Date().toISOString().slice(0, 10);
+}
+
+function yesterdayKey() {
+  const date = new Date();
+  date.setDate(date.getDate() - 1);
+  return date.toISOString().slice(0, 10);
+}
+
+function touchStreak() {
+  const today = todayKey();
+  if (userStats.lastActiveDate === today) return;
+
+  userStats.streak = userStats.lastActiveDate === yesterdayKey() ? userStats.streak + 1 : 1;
+  userStats.lastActiveDate = today;
+}
+
+function rankFromXp(xp) {
+  return Math.max(1, Math.floor(xp / 400) + 1);
+}
+
+function addXp(amount) {
+  touchStreak();
+  userStats.xp += amount;
+  saveUserStats();
+  renderUserStats();
+}
+
+function renderUserStats() {
+  const rank = rankFromXp(userStats.xp);
+  const accuracy = userStats.totalAnswers
+    ? Math.round((userStats.correctAnswers / userStats.totalAnswers) * 100)
+    : 0;
+  const streakPercent = Math.min(100, Math.max(8, userStats.streak * 12));
+  const nextRankXp = rank * 400;
+  const remaining = Math.max(0, nextRankXp - userStats.xp);
+
+  $("#profileRank").textContent = `Rank ${rank}`;
+  $("#profileXp").textContent = `${userStats.xp.toLocaleString()} XP`;
+  $("#streakValue").textContent = `${userStats.streak} ${userStats.streak === 1 ? "day" : "days"}`;
+  $("#streakRing").style.setProperty("--value", `${streakPercent}%`);
+  $("#streakPercent").textContent = `${streakPercent}%`;
+  $("#accuracyValue").textContent = `${accuracy}%`;
+  $("#xpValue").textContent = `${userStats.xp.toLocaleString()} XP`;
+  $("#rankHint").textContent = remaining ? `${remaining} XP to Rank ${rank + 1}` : "Next rank unlocked.";
+
+  const leaderboard = [
+    { name: "Aarav", xp: 3120 },
+    { name: "You", xp: userStats.xp, self: true },
+    { name: "Maya", xp: 2730 },
+    { name: "Riya", xp: 2280 },
+    { name: "Kabir", xp: 1860 },
+  ].sort((a, b) => b.xp - a.xp);
+
+  const list = $("#leaderboardList");
+  if (list) {
+    list.innerHTML = "";
+    leaderboard.forEach((player, index) => {
+      const item = document.createElement("li");
+      if (player.self) item.classList.add("you-rank");
+      item.innerHTML = `<span>${index + 1}. ${player.name}</span><strong>${player.xp.toLocaleString()} XP</strong>`;
+      list.appendChild(item);
+    });
+  }
 }
 
 function setPanel(panelId) {
@@ -627,6 +720,8 @@ async function generateStudyPack() {
 
   setProcessing("Study pack ready. Opening AI notes...", true);
   applyStudyPack(pack);
+  userStats.packsGenerated += 1;
+  addXp(120);
   setTimeout(() => setPanel("notesPanel"), 450);
 }
 
@@ -661,7 +756,14 @@ function chooseAnswer(button, option) {
   answered = true;
   const question = questions[currentQuestion];
   const isCorrect = option === question.answer;
-  if (isCorrect) score += 1;
+  userStats.totalAnswers += 1;
+  if (isCorrect) {
+    score += 1;
+    userStats.correctAnswers += 1;
+    addXp(35);
+  } else {
+    addXp(8);
+  }
 
   $$("#answerGrid button").forEach((answer) => {
     if (answer.textContent === question.answer) answer.classList.add("correct");
@@ -729,6 +831,7 @@ function sendChat(event) {
 
   appendMessage(value, "user");
   input.value = "";
+  addXp(5);
 
   setTimeout(() => {
     appendMessage(answerFromMaterial(value), "ai");
@@ -831,6 +934,16 @@ function wireEvents() {
   $$(".chip[data-explain]").forEach((button) => {
     button.addEventListener("click", () => {
       $("#explainText").textContent = studyPack.explanations[button.dataset.explain];
+      addXp(3);
+    });
+  });
+
+  $$(".review-chip").forEach((button) => {
+    button.addEventListener("click", () => {
+      $$(".review-chip").forEach((chip) => chip.classList.remove("active"));
+      button.classList.add("active");
+      userStats.cardsReviewed += 1;
+      addXp(button.dataset.review === "favorite" ? 18 : 10);
     });
   });
 
@@ -846,6 +959,7 @@ document.addEventListener("DOMContentLoaded", () => {
   countUp();
   fillHeatmap();
   applyStudyPack(studyPack);
+  renderUserStats();
   drawAnalytics();
   wireEvents();
 });

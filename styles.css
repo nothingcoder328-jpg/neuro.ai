@@ -1049,6 +1049,12 @@ canvas {
   background: rgba(255,255,255,.05);
 }
 
+.leaderboard li.you-rank {
+  border: 1px solid rgba(94, 234, 212, 0.34);
+  background: linear-gradient(90deg, rgba(94, 234, 212, 0.14), rgba(168, 85, 247, 0.1));
+  color: var(--text);
+}
+
 .settings-card {
   display: grid;
   gap: 14px;

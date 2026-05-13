@@ -1,26 +1,66 @@
 # NeuroNote AI
 
-Premium static hackathon demo for an AI-powered student study platform.
+Premium AI-style student study platform for PDFs, notes, quizzes, flashcards, and analytics.
 
-## Open the demo                                                                                                                                                            neuroai-production-d758.up.railway.app
+## Run Locally
 
-Open `index.html` in a browser.
+```bash
+npm start
+```
 
-## Suggested judge demo flow
+Then open:
 
-1. Start on the landing page and point out the animated AI dashboard preview.
-2. Click `Watch Demo` or scroll to the live workspace.
-3. Open `Upload PDF`, then click `Generate AI Study Pack`.
-4. Let the simulated analyzer move into `AI Notes`.
-5. Use the `Explain Like I'm 15` buttons.
-6. Open `Quiz Center` and answer the timed quiz.
-7. Open `Flashcards`, flip a card, and cycle through the deck.
-8. Open `AI Chat` and ask a PDF question.
-9. Open `Analytics` to show the chart and leaderboard.
-10. End on the dashboard overview with streaks, recommendations, and heatmap.
+```text
+http://localhost:3000
+```
+
+You can also open `index.html` directly, but `npm start` is better because it enables the `/api/analyze` backend route.
+
+## Use The App
+
+1. Open the app.
+2. Click `Open App`.
+3. Go to `Upload PDF`.
+4. Choose a PDF/text file or paste study material.
+5. Click `Generate Study Pack`.
+6. Review generated notes, explanations, flashcards, quiz questions, chat answers, and analytics.
+
+## Deploy On Railway
+
+Railway should detect Node automatically.
+
+Start command:
+
+```bash
+npm start
+```
+
+The server uses Railway's `PORT` environment variable automatically.
+
+## Real AI Generation
+
+The app works without an API key using the built-in local generator. For real AI notes, flashcards, explanations, and quizzes, add this Railway variable:
+
+```text
+OPENAI_API_KEY=your_openai_key_here
+```
+
+Optional:
+
+```text
+OPENAI_MODEL=gpt-4o-mini
+```
+
+After adding the variable, redeploy the Railway project.
+
+## Ranking
+
+XP, streaks, quiz accuracy, rank, reviewed flashcards, and leaderboard position are saved in the browser with `localStorage`. For a real global class leaderboard across many users, connect authentication and a database such as Supabase or Firebase.
 
 ## Files
 
-- `index.html` - app markup and demo content
-- `styles.css` - dark premium glass UI, responsive layout, and animations
-- `app.js` - interactions, quiz scoring, flashcards, chat simulation, counters, and charts
+- `index.html` - landing page and full student workspace
+- `styles.css` - premium dark glass UI and responsive layout
+- `app.js` - upload flow, PDF text extraction, study pack generation, storage, quiz, flashcards, chat, and charts
+- `server.js` - Node static server plus `/api/analyze`
+- `package.json` - Railway start script

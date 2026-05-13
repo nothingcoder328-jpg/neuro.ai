@@ -197,8 +197,8 @@
             </div>
             <div class="profile-pill">
               <span class="status-dot"></span>
-              <strong>Rank 7</strong>
-              <small>2,840 XP</small>
+              <strong id="profileRank">Rank 1</strong>
+              <small id="profileXp">0 XP</small>
             </div>
           </div>
 
@@ -206,18 +206,18 @@
             <div class="stat-grid">
               <article class="stat-card">
                 <span>Study streak</span>
-                <strong>12 days</strong>
-                <div class="ring" style="--value: 78%"><b>78%</b></div>
+                <strong id="streakValue">0 days</strong>
+                <div class="ring" id="streakRing" style="--value: 8%"><b id="streakPercent">8%</b></div>
               </article>
               <article class="stat-card">
                 <span>Quiz accuracy</span>
-                <strong>94%</strong>
+                <strong id="accuracyValue">0%</strong>
                 <div class="mini-line"></div>
               </article>
               <article class="stat-card">
                 <span>Time studied</span>
-                <strong>18.6h</strong>
-                <p>+4.2h this week</p>
+                <strong id="xpValue">0 XP</strong>
+                <p id="rankHint">Generate a study pack to start ranking up.</p>
               </article>
             </div>
             <div class="dashboard-grid">
@@ -312,10 +312,10 @@
               <button class="icon-button" id="nextCard" aria-label="Next flashcard">›</button>
             </div>
             <div class="spaced-row">
-              <button class="chip">Again</button>
-              <button class="chip">Good</button>
-              <button class="chip active">Easy</button>
-              <button class="chip">Favorite</button>
+              <button class="chip review-chip" data-review="again">Again</button>
+              <button class="chip review-chip" data-review="good">Good</button>
+              <button class="chip review-chip active" data-review="easy">Easy</button>
+              <button class="chip review-chip" data-review="favorite">Favorite</button>
             </div>
           </section>
 
@@ -362,10 +362,8 @@
                   <h3>Leaderboard</h3>
                   <span>Class 10 Bio</span>
                 </div>
-                <ol>
-                  <li><span>Aarav</span><strong>3,120 XP</strong></li>
-                  <li><span>You</span><strong>2,840 XP</strong></li>
-                  <li><span>Maya</span><strong>2,730 XP</strong></li>
+                <ol id="leaderboardList">
+                  <li><span>You</span><strong id="leaderboardXp">0 XP</strong></li>
                 </ol>
               </article>
             </div>
